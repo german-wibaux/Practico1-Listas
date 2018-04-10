@@ -1,11 +1,42 @@
-//import listaRepetidos.Nodo;
 
-public class MySimpleLinkedList {
+import java.util.Iterator;
+
+
+
+public class MySimpleLinkedList implements Iterable<Object> {
+	//Create iterator to go through lists
 	
-	protected Node first;
+	private Node first;
+	private int size;
 	
 	public MySimpleLinkedList() {
-		first = null;
+		this.first = null;
+		this.size = 0;
+	}	
+	
+	public class MyIterator implements Iterator<Object>{
+		
+		private Node pointer;
+		
+		private MyIterator(Node first){
+			pointer=first;
+		}
+		
+		//Implement iterator methods		
+		public boolean hasNext() {
+			return pointer!=null;
+		}
+	
+		public Node next() {
+			Node tmp=pointer;
+			pointer=pointer.getNext();
+			return tmp;
+		}
+		
+		//Reset iterator
+		public void resetCursor() {
+			pointer=first;
+		}
 	}
 	
 	public void insert(Object o) {
@@ -23,55 +54,28 @@ public class MySimpleLinkedList {
 		last.setNext(tmp);
 	}
 	
-//	public boolean search(Node searching, Object element) {
-//		if (searching == null) 
-//			return false;
-//		if (element.equals(searching.getInfo())) 
-//			return true;
-//		return search(searching.getNext(), element); 
-//	}
+	public int getSize() {
+		return this.size;
+	}
 	
 	public void showList() {
 		Node print = this.first;
 		while (print != null) {
 			System.out.print(print.getInfo() + "\n");
 			print = print.getNext();
-		}
-		
+		}		
 	}
-	
-//	public Node getRoot() {
-//		return this.first;
-//	}
 	
 	public Object showFirst() {
 		if (this.first==null) return -1;
 		else return this.first.getInfo();	
 	}
 	
-//	public void print(int n) {
-//		
-//		Node showInfo = this.first;
-//		int count=0;
-//		
-//		if (tamanio()>=n) {
-//			while (contador!=n) {
-//				contador++;
-//				if (count==n) {
-//					System.out.println(showInfo.getInfo());
-//				}
-//				showInfo=showInfo.getNext();
-//			}
-//			System.out.println(showInfo.getInfo());
-//		}
-//		else System.out.println("The list is empty");
-//	}
 	
-//	
 	public boolean isEmpty() {
 		return this.first == null;
 	}
-//	
+
 	public int size() {
 		Node run = this.first;
 		int count = 0;
@@ -84,6 +88,10 @@ public class MySimpleLinkedList {
 		
 		return count;
 		
+	}
+	
+	public MyIterator iterator() {
+		return new MyIterator(this.first);
 	}
 	
 }
