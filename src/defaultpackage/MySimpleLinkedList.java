@@ -1,3 +1,4 @@
+package defaultpackage;
 
 import java.util.Iterator;
 
@@ -32,7 +33,7 @@ public class MySimpleLinkedList implements Iterable<Object> {
 			return tmp;
 		}
 		
-		public void resetCursor() {
+		public void resetPointer() {
 			//Reset iterator
 			pointer=first;
 		}
@@ -85,13 +86,22 @@ public class MySimpleLinkedList implements Iterable<Object> {
 	
 	public void insertLastPosition(Object o) {
 		//Insert at the end
-		Node tmp = new Node(o ,null);
-		Node last = this.first;
-		while (last.getNext() != null) {
-			last = last.getNext();
-		}
-		last.setNext(tmp);
-		this.size ++;
+		
+		if (this.isEmpty())
+			this.insert(o);
+		else {
+			
+			Node tmp = new Node(o ,null);
+			Node last = this.first;
+			
+			for (int i=0; i<this.size-1; i++) {
+				last = last.getNext();
+			}
+			last.setNext(tmp);
+			this.size++;
+			
+		}	
+		
 	}
 	
 	public void showList() {
@@ -101,7 +111,7 @@ public class MySimpleLinkedList implements Iterable<Object> {
 			System.out.println("The list is empty");
 		else {
 			while (print != null) {
-				System.out.print(print.getInfo() + "->" + "\n");
+				System.out.print("\\-> " + print.getInfo() + "\n");
 				print = print.getNext();
 			}
 		}
@@ -116,12 +126,6 @@ public class MySimpleLinkedList implements Iterable<Object> {
 		return tmp.getInfo();
 	}
 	
-	public Object showFirst() {
-		//Returns the info of the first element
-		if (this.first==null) return -1;
-		else return this.first.getInfo();	
-	}	
-	
 	public boolean isEmpty() {
 		//Returns true if list is empty
 		return this.first == null;
@@ -133,6 +137,7 @@ public class MySimpleLinkedList implements Iterable<Object> {
 	}
 	
 	public Object getFirst() {
+		//Returns the info of the first element
 		if (this.first == null) 
 			return -1;
 		else

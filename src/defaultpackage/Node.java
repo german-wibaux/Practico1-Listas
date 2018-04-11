@@ -1,3 +1,4 @@
+package defaultpackage;
 
 public class Node {
 	
