@@ -48,8 +48,7 @@ public class Lists {
 
 				int elemCompare2 = (int) iter2.next().getInfo();
 
-				if (elemCompare == elemCompare2) {
-					System.out.println(elemCompare);
+				if (elemCompare == elemCompare2) {					
 					ctrl = true;
 					listResult.insertInOrder(elemCompare);
 				}
