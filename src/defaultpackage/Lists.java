@@ -91,21 +91,23 @@ public class Lists {
 		MySimpleLinkedList list_2 = new MySimpleLinkedList();
 		MySimpleLinkedList list_Result = new MySimpleLinkedList();
 
-		list_1.insert(6);
-		list_1.insert(5);
+		list_1.insert(7);
+		list_1.insert(4);
 		list_1.insert(3);
-		list_1.insert(8);
-		list_1.insert(25);
 		list_1.insert(10);
+		list_1.insert(25);
+		
 
 		list_2.insert(2);
 		list_2.insert(99);
 		list_2.insert(11);
-		list_2.insert(8);
-		list_2.insert(6);
-		list_2.insert(5);
+		list_2.insert(10);
+		list_2.insert(7);
+		list_2.insert(4);
 		list_2.insertInOrder(1);
 		list_2.insertInOrder(100);
+		list_2.insertInOrder(1000);
+		list_2.insertInOrder(1005);
 
 		listElementsRepeteadNotOrder(list_1, list_2, list_Result);
 
